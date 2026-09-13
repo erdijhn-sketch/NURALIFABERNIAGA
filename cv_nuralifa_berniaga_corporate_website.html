@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV NURALIFA BERNIAGA | Inspire. Connect. Passion. Build.</title>
+    <meta name="description" content="Mitra terpercaya untuk pengadaan barang dan jasa bagi instansi pemerintah, BUMN, dan perusahaan swasta di Indonesia.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        nb: {
+                            dark: '#0A0A0A',
+                            darker: '#050505',
+                            blue: '#0B2E63',
+                            blueLight: '#1E6FD9',
+                            blueBright: '#4FA8E8',
+                            silver: '#C7CCD1',
+                            silverDark: '#889096',
+                        }
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        'glass-gradient': 'linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0A0A0A;
+            color: #F7F8FA;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Utilities */
+        .glass-card {
+            background: rgba(11, 46, 99, 0.15);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(199, 204, 209, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .glass-nav {
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* 3D Animated Favicon/Logo Element in UI */
+        .cube-container {
+            width: 50px;
+            height: 50px;
+            perspective: 600px;
+        }
+        .cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: spinCube 8s infinite ease-in-out alternate;
+        }
+        .cube-face {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Poppins', sans-serif;
+            font-weight: bold;
+            font-size: 24px;
+            color: #F7F8FA;
+            background: linear-gradient(135deg, #0B2E63, #1E6FD9);
+            border: 1px solid #C7CCD1;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+        }
+        .cube-face-front  { transform: rotateY(  0deg) translateZ(25px); }
+        .cube-face-back   { transform: rotateY(180deg) translateZ(25px); }
+        .cube-face-right  { transform: rotateY( 90deg) translateZ(25px); }
+        .cube-face-left   { transform: rotateY(-90deg) translateZ(25px); }
+        .cube-face-top    { transform: rotateX( 90deg) translateZ(25px); background: #C7CCD1; color: #0B2E63;}
+        .cube-face-bottom { transform: rotateX(-90deg) translateZ(25px); }
+
+        @keyframes spinCube {
+            0% { transform: rotateX(-15deg) rotateY(0deg); }
+            100% { transform: rotateX(15deg) rotateY(360deg); }
+        }
+
+        /* 3D Social Icons */
+        .social-3d {
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+            box-shadow: 2px 4px 10px rgba(0,0,0,0.5);
+        }
+        .social-3d:hover {
+            transform: translateY(-5px) rotateX(10deg) scale(1.1);
+            box-shadow: 5px 10px 20px rgba(79, 168, 232, 0.4);
+            border-color: #4FA8E8;
+        }
+
+        /* Team Image Animation */
+        .team-img-wrapper {
+            overflow: hidden;
+            aspect-ratio: 9/16;
+            position: relative;
+        }
+        .team-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.05);
+            transition: transform 3s ease-in-out;
+        }
+        .team-card:hover .team-img {
+            transform: scale(1.0);
+        }
+        .team-info-overlay {
+            background: linear-gradient(to top, rgba(10,10,10,0.95) 0%, rgba(11,46,99,0.8) 50%, transparent 100%);
+            opacity: 0;
+            transition: all 0.4s ease;
+            transform: translateY(20px);
+        }
+        .team-card:hover .team-info-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Mobile touch support for team cards */
+        @media (hover: none) {
+            .team-info-overlay {
+                opacity: 1;
+                transform: translateY(0);
+                background: linear-gradient(to top, rgba(10,10,10,0.95) 0%, rgba(11,46,99,0.5) 70%, transparent 100%);
+            }
+        }
+
+        /* Background Overlay & Parallax */
+        .bg-construction {
+            /* Fallback background if exact image is missing */
+            background-image: url('https://images.unsplash.com/photo-1541888086425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
+        .bg-overlay {
+            background: linear-gradient(180deg, rgba(10,10,10,0.8) 0%, rgba(11,46,99,0.7) 50%, rgba(10,10,10,0.95) 100%);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0A0A0A; }
+        ::-webkit-scrollbar-thumb { background: #1E6FD9; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #4FA8E8; }
+
+        .text-gradient {
+            background: linear-gradient(to right, #4FA8E8, #C7CCD1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-nb-blueLight selection:text-white relative">
+
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex items-center gap-3">
+                    <div class="cube-container hidden sm:block">
+                        <div class="cube">
+                            <div class="cube-face cube-face-front">N</div>
+                            <div class="cube-face cube-face-back">B</div>
+                            <div class="cube-face cube-face-right">N</div>
+                            <div class="cube-face cube-face-left">B</div>
+                            <div class="cube-face cube-face-top"></div>
+                            <div class="cube-face cube-face-bottom"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <h1 class="font-heading font-bold text-2xl tracking-wider text-white leading-none">NURALIFA</h1>
+                        <h2 class="font-heading font-semibold text-nb-silver text-lg tracking-widest leading-none">BERNIAGA</h2>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-sm font-medium hover:text-nb-blueBright transition-colors" data-i18n="nav_home">Beranda</a>
+                    <a href="#about" class="text-sm font-medium hover:text-nb-blueBright transition-colors" data-i18n="nav_about">Tentang Kami</a>
+                    <a href="#services" class="text-sm font-medium hover:text-nb-blueBright transition-colors" data-i18n="nav_services">Layanan</a>
+                    <a href="#team" class="text-sm font-medium hover:text-nb-blueBright transition-colors" data-i18n="nav_team">Tim</a>
+                    <a href="#portfolio" class="text-sm font-medium hover:text-nb-blueBright transition-colors" data-i18n="nav_portfolio">Portofolio</a>
+                    <a href="#contact" class="text-sm font-medium hover:text-nb-blueBright transition-colors" data-i18n="nav_contact">Kontak</a>
+                    
+                    <!-- Language Toggle -->
+                    <button id="langToggle" class="flex items-center gap-2 bg-nb-blue/50 border border-nb-silver/30 px-3 py-1.5 rounded-full hover:bg-nb-blue transition-all">
+                        <i class="fas fa-globe text-nb-blueBright"></i>
+                        <span id="langText" class="text-sm font-bold">ID</span>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobileMenuBtn" class="text-white hover:text-nb-blueBright focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden glass-card absolute w-full border-t-0">
+            <div class="px-4 pt-2 pb-6 space-y-3 flex flex-col">
+                <a href="#home" class="block px-3 py-2 text-base font-medium hover:text-nb-blueBright" data-i18n="nav_home">Beranda</a>
+                <a href="#about" class="block px-3 py-2 text-base font-medium hover:text-nb-blueBright" data-i18n="nav_about">Tentang Kami</a>
+                <a href="#services" class="block px-3 py-2 text-base font-medium hover:text-nb-blueBright" data-i18n="nav_services">Layanan</a>
+                <a href="#team" class="block px-3 py-2 text-base font-medium hover:text-nb-blueBright" data-i18n="nav_team">Tim</a>
+                <a href="#portfolio" class="block px-3 py-2 text-base font-medium hover:text-nb-blueBright" data-i18n="nav_portfolio">Portofolio</a>
+                <a href="#contact" class="block px-3 py-2 text-base font-medium hover:text-nb-blueBright" data-i18n="nav_contact">Kontak</a>
+                <button id="mobileLangToggle" class="text-left px-3 py-2 text-base font-medium text-nb-blueBright">Switch Language (EN)</button>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="relative min-h-screen flex items-center justify-center bg-construction">
+        <div class="absolute inset-0 bg-overlay"></div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center mt-20">
+            <!-- Glass Label -->
+            <div class="glass-card px-6 py-2 rounded-full mb-8 inline-flex items-center gap-3 animate-fade-in-up">
+                <span class="w-2 h-2 rounded-full bg-nb-blueBright animate-pulse"></span>
+                <span class="text-sm font-medium tracking-wide uppercase text-nb-silver" data-i18n="hero_badge">Pengadaan Barang & Jasa Konstruksi</span>
+            </div>
+
+            <h1 class="font-heading text-5xl md:text-7xl font-bold text-white mb-6 leading-tight max-w-5xl gs-reveal">
+                Inspire. Connection.<br>
+                <span class="text-gradient">Passion. Build.</span>
+            </h1>
+            
+            <p class="text-lg md:text-xl text-gray-300 max-w-3xl mb-10 gs-reveal" data-i18n="hero_sub">
+                Solusi Profesional Pengadaan Barang & Jasa Terpercaya. Menginspirasi, menghubungkan, dan membangun dengan semangat sejak 2015.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 gs-reveal">
+                <a href="#contact" class="bg-nb-blueLight hover:bg-nb-blue text-white px-8 py-4 rounded-md font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(30,111,217,0.4)]">
+                    <i class="fab fa-whatsapp text-xl"></i>
+                    <span data-i18n="btn_contact">Hubungi Kami</span>
+                </a>
+                <a href="#portfolio" class="glass-card hover:bg-white/10 text-white px-8 py-4 rounded-md font-semibold transition-all flex items-center justify-center gap-2 border border-nb-silver/30">
+                    <i class="fas fa-folder-open"></i>
+                    <span data-i18n="btn_portfolio">Lihat Portofolio</span>
+                </a>
+            </div>
+
+            <!-- Identic Caption Section (Wajib persis) -->
+            <div class="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full text-left gs-reveal">
+                <div class="glass-card p-5 rounded-lg border-t-4 border-t-nb-blueBright">
+                    <div class="text-2xl mb-2">🔧</div>
+                    <p class="text-sm font-medium" data-i18n="cap_1">Proyek bukan sekadar untuk pekerjaan</p>
+                </div>
+                <div class="glass-card p-5 rounded-lg border-t-4 border-t-nb-silver">
+                    <div class="text-2xl mb-2">💼</div>
+                    <p class="text-sm font-medium" data-i18n="cap_2">Bisnis bukan sekadar bertransaksi.</p>
+                </div>
+                <div class="glass-card p-5 rounded-lg border-t-4 border-t-nb-blueLight">
+                    <div class="text-2xl mb-2">💙</div>
+                    <p class="text-sm font-medium" data-i18n="cap_3">Bagi kami, ini adalah soal Inspire - Connect - Passion-Build</p>
+                </div>
+                <div class="glass-card p-5 rounded-lg border-t-4 border-t-white">
+                    <div class="text-2xl mb-2">🔷</div>
+                    <p class="text-sm font-medium" data-i18n="cap_4">Solusi bisnis modern dengan semangat dan sinergi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 relative bg-nb-darker">
+        <!-- Blur decoration -->
+        <div class="absolute top-0 left-0 w-96 h-96 bg-nb-blue/20 rounded-full mix-blend-screen filter blur-[100px] pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="gs-reveal">
+                    <h2 class="font-heading text-4xl md:text-5xl font-bold mb-6">
+                        <span class="text-nb-blueBright" data-i18n="about_title">Tentang Kami</span>
+                    </h2>
+                    <div class="w-20 h-1 bg-nb-silver mb-8"></div>
+                    <p class="text-gray-300 leading-relaxed mb-6 text-justify" data-i18n="about_history">
+                        Mitra terpercaya untuk pengadaan barang dan jasa bagi instansi pemerintah, BUMN, dan perusahaan swasta. Kami mengutamakan profesionalisme, integritas, dan ketepatan waktu. NURALIFA BERNIAGA resmi didirikan pada tahun 2015 di Kota Bandung, Provinsi Jawa Barat, Indonesia, dengan semangat untuk menjadi solusi strategis dan profesional dalam pengadaan barang dan jasa, serta aktivitas konstruksi dan perdagangan umum. Sejak tahun 2015, Nuralifa Berniaga hadir sebagai entitas bisnis terpercaya dari Bandung, Provinsi Jawa Barat, yang terus berkembang menjadi partner profesional dalam pengadaan barang, jasa konstruksi, dan manajemen usaha modern. Perusahaan ini dibentuk berdasarkan kebutuhan akan entitas bisnis lokal yang fleksibel dan adaptif terhadap dinamika pasar, siap menjadi mitra terpercaya dalam skala nasional maupun internasional dan mengedepankan efisiensi, integritas, dan profesionalitas.
+                    </p>
+                </div>
+                
+                <div class="space-y-6 gs-reveal">
+                    <!-- Visi -->
+                    <div class="glass-card p-8 rounded-xl border border-nb-blue/30 relative overflow-hidden group">
+                        <div class="absolute -right-4 -top-4 text-8xl text-white/5 font-heading font-bold group-hover:scale-110 transition-transform">V</div>
+                        <h3 class="text-2xl font-heading font-bold text-white mb-3">Visi</h3>
+                        <p class="text-gray-300 relative z-10" data-i18n="about_vision">
+                            Menjadi mitra bisnis terpercaya dan kompetitif di tingkat nasional dan internasional dalam bidang pengadaan, jasa konstruksi, dan manajemen usaha.
+                        </p>
+                    </div>
+                    
+                    <!-- Misi -->
+                    <div class="glass-card p-8 rounded-xl border border-nb-silver/20">
+                        <h3 class="text-2xl font-heading font-bold text-white mb-4">Misi</h3>
+                        <ul class="space-y-3 text-gray-300">
+                            <li class="flex gap-3"><i class="fas fa-check text-nb-blueBright mt-1"></i> <span data-i18n="m_1">Memberikan solusi layanan profesional dan berintegritas.</span></li>
+                            <li class="flex gap-3"><i class="fas fa-check text-nb-blueBright mt-1"></i> <span data-i18n="m_2">Menjalin kemitraan strategis berbasis kepercayaan dan kinerja.</span></li>
+                            <li class="flex gap-3"><i class="fas fa-check text-nb-blueBright mt-1"></i> <span data-i18n="m_3">Berinovasi dalam pengelolaan aset, proyek, dan keuangan.</span></li>
+                            <li class="flex gap-3"><i class="fas fa-check text-nb-blueBright mt-1"></i> <span data-i18n="m_4">Menyediakan produk dan jasa berkualitas tinggi dan tepat waktu.</span></li>
+                            <li class="flex gap-3"><i class="fas fa-check text-nb-blueBright mt-1"></i> <span data-i18n="m_5">Mendorong pertumbuhan berkelanjutan bagi perusahaan dan mitra kerja.</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nilai Perusahaan -->
+            <div class="mt-24">
+                <h3 class="text-center font-heading text-3xl font-bold mb-12" data-i18n="val_title">Nilai Perusahaan (Values)</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                    <!-- Cards -->
+                    <div class="glass-card p-6 rounded-lg text-center hover:border-nb-blueBright transition-colors gs-reveal">
+                        <div class="w-14 h-14 mx-auto bg-nb-blue/30 rounded-full flex items-center justify-center mb-4 text-xl text-nb-blueBright"><i class="fas fa-shield-alt"></i></div>
+                        <h4 class="font-bold mb-2">Integrity</h4>
+                        <p class="text-sm text-gray-400" data-i18n="v_1">Kejujuran dan etika kerja yang tinggi.</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-lg text-center hover:border-nb-blueBright transition-colors gs-reveal">
+                        <div class="w-14 h-14 mx-auto bg-nb-blue/30 rounded-full flex items-center justify-center mb-4 text-xl text-nb-blueBright"><i class="fas fa-user-tie"></i></div>
+                        <h4 class="font-bold mb-2">Professionalism</h4>
+                        <p class="text-sm text-gray-400" data-i18n="v_2">Keahlian dan tanggung jawab dalam pelaksanaan.</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-lg text-center hover:border-nb-blueBright transition-colors gs-reveal">
+                        <div class="w-14 h-14 mx-auto bg-nb-blue/30 rounded-full flex items-center justify-center mb-4 text-xl text-nb-blueBright"><i class="fas fa-lightbulb"></i></div>
+                        <h4 class="font-bold mb-2">Innovation</h4>
+                        <p class="text-sm text-gray-400" data-i18n="v_3">Adaptasi teknologi dan solusi baru.</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-lg text-center hover:border-nb-blueBright transition-colors gs-reveal">
+                        <div class="w-14 h-14 mx-auto bg-nb-blue/30 rounded-full flex items-center justify-center mb-4 text-xl text-nb-blueBright"><i class="fas fa-handshake"></i></div>
+                        <h4 class="font-bold mb-2">Collaboration</h4>
+                        <p class="text-sm text-gray-400" data-i18n="v_4">Kemitraan jangka panjang yang saling menguntungkan.</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-lg text-center hover:border-nb-blueBright transition-colors gs-reveal">
+                        <div class="w-14 h-14 mx-auto bg-nb-blue/30 rounded-full flex items-center justify-center mb-4 text-xl text-nb-blueBright"><i class="fas fa-leaf"></i></div>
+                        <h4 class="font-bold mb-2">Sustainability</h4>
+                        <p class="text-sm text-gray-400" data-i18n="v_5">Fokus pada dampak positif sosial dan lingkungan.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Big Quote -->
+            <div class="mt-24 text-center px-4 md:px-20 gs-reveal">
+                <i class="fas fa-quote-left text-4xl text-nb-blue/50 mb-6"></i>
+                <h2 class="font-heading text-2xl md:text-4xl font-light italic text-nb-silver leading-relaxed" data-i18n="about_quote">
+                    "Kami percaya bahwa setiap keberhasilan dimulai dari inspirasi, dibangun melalui koneksi, dan dijalankan dengan semangat."
+                </h2>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-24 relative bg-[#070707]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 gs-reveal">
+                <h2 class="font-heading text-4xl font-bold mb-4" data-i18n="biz_title">Core Business</h2>
+                <p class="text-nb-blueBright font-medium tracking-wide">Inspire. Connect. Passion. Build.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- 1 -->
+                <div class="glass-card p-8 rounded-xl hover:-translate-y-2 transition-transform duration-300 group border-t-2 border-t-transparent hover:border-t-nb-blueBright gs-reveal">
+                    <div class="w-12 h-12 bg-white/5 rounded-lg flex items-center justify-center mb-6 text-2xl text-nb-silver group-hover:text-nb-blueBright transition-colors">
+                        <i class="fas fa-hard-hat"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4" data-i18n="b_1_t">Pengadaan Barang dan Jasa Konstruksi</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed" data-i18n="b_1_d">Melayani proyek-proyek konstruksi baik swasta maupun pemerintah, dengan penekanan pada kualitas, waktu, dan efisiensi biaya.</p>
+                </div>
+                <!-- 2 -->
+                <div class="glass-card p-8 rounded-xl hover:-translate-y-2 transition-transform duration-300 group border-t-2 border-t-transparent hover:border-t-nb-blueBright gs-reveal">
+                    <div class="w-12 h-12 bg-white/5 rounded-lg flex items-center justify-center mb-6 text-2xl text-nb-silver group-hover:text-nb-blueBright transition-colors">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4" data-i18n="b_2_t">Manajemen Aset dan Cash Management</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed" data-i18n="b_2_d">Solusi pengelolaan aset dan arus kas yang transparan, akuntabel, dan terintegrasi bagi klien institusi maupun korporasi.</p>
+                </div>
+                <!-- 3 -->
+                <div class="glass-card p-8 rounded-xl hover:-translate-y-2 transition-transform duration-300 group border-t-2 border-t-transparent hover:border-t-nb-blueBright gs-reveal">
+                    <div class="w-12 h-12 bg-white/5 rounded-lg flex items-center justify-center mb-6 text-2xl text-nb-silver group-hover:text-nb-blueBright transition-colors">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4" data-i18n="b_3_t">Trading dan General Kontraktor</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed" data-i18n="b_3_d">Perdagangan komoditas, peralatan industri, dan pelaksanaan proyek sebagai kontraktor umum.</p>
+                </div>
+                <!-- 4 -->
+                <div class="glass-card p-8 rounded-xl hover:-translate-y-2 transition-transform duration-300 group border-t-2 border-t-transparent hover:border-t-nb-blueBright gs-reveal">
+                    <div class="w-12 h-12 bg-white/5 rounded-lg flex items-center justify-center mb-6 text-2xl text-nb-silver group-hover:text-nb-blueBright transition-colors">
+                        <i class="fas fa-truck-loading"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4" data-i18n="b_4_t">Supplier</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed" data-i18n="b_4_d">Menyediakan berbagai kebutuhan material konstruksi, alat teknik, dan perlengkapan usaha lainnya.</p>
+                </div>
+                <!-- 5 -->
+                <div class="glass-card p-8 rounded-xl hover:-translate-y-2 transition-transform duration-300 group border-t-2 border-t-transparent hover:border-t-nb-blueBright gs-reveal lg:col-span-2">
+                    <div class="w-12 h-12 bg-white/5 rounded-lg flex items-center justify-center mb-6 text-2xl text-nb-silver group-hover:text-nb-blueBright transition-colors">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4" data-i18n="b_5_t">Joint Operation (JO)</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed" data-i18n="b_5_d">Bermitra dengan pelaku usaha lokal dan internasional untuk kolaborasi proyek jangka pendek maupun panjang, berbasis sinergi dan keuntungan bersama.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-nb-dark relative border-y border-white/5">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 gs-reveal">
+            <div class="flex justify-between items-end mb-8">
+                <div>
+                    <h2 class="font-heading text-3xl font-bold mb-2" data-i18n="legal_title">Legalitas & Perizinan</h2>
+                    <p class="text-gray-400 text-sm" data-i18n="legal_sub">Dokumen resmi perusahaan.</p>
+                </div>
+                <button id="toggleMaskBtn" class="text-xs bg-white/10 hover:bg-white/20 px-3 py-1 rounded border border-white/10 transition-colors">
+                    <i class="fas fa-eye-slash mr-1"></i> <span id="maskText" data-i18n="btn_mask">Buka Data</span>
+                </button>
+            </div>
+
+            <div class="glass-card rounded-xl overflow-hidden">
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-y-4 p-6 text-sm">
+                    <!-- Data injected via JS to handle masking easily -->
+                    <div class="col-span-1 text-gray-400"><i class="fas fa-file-contract mr-2"></i> Akte Pendirian</div>
+                    <div class="col-span-1 md:col-span-2 font-mono legal-data" data-value="Tersedia">********</div>
+                    
+                    <div class="col-span-1 text-gray-400"><i class="fas fa-file-signature mr-2"></i> Nomor AHU</div>
+                    <div class="col-span-1 md:col-span-2 font-mono legal-data" data-value="Tersedia">********</div>
+
+                    <div class="col-span-1 text-gray-400"><i class="fas fa-certificate mr-2"></i> Nomor SK PKP</div>
+                    <div class="col-span-1 md:col-span-2 font-mono legal-data" data-value="Tersedia">********</div>
+
+                    <div class="col-span-1 text-gray-400"><i class="fas fa-id-card mr-2"></i> NPWP</div>
+                    <div class="col-span-1 md:col-span-2 font-mono legal-data" data-value="Tersedia">********</div>
+
+                    <div class="col-span-1 text-gray-400"><i class="fas fa-briefcase mr-2"></i> NIB</div>
+                    <div class="col-span-1 md:col-span-2 font-mono legal-data" data-value="Tersedia">********</div>
+
+                    <div class="col-span-1 text-gray-400"><i class="fas fa-map-marker-alt mr-2"></i> SK. Domisili</div>
+                    <div class="col-span-1 md:col-span-2 font-mono legal-data" data-value="Tersedia">********</div>
+                    
+                    <div class="col-span-1 text-gray-400"><i class="fas fa-file-alt mr-2"></i> SIUP & TDP</div>
+                    <div class="col-span-1 md:col-span-2 font-mono legal-data" data-value="Tersedia">********</div>
+
+                    <div class="col-span-1 text-gray-400"><i class="fas fa-building mr-2"></i> SIUJK</div>
+                    <div class="col-span-1 md:col-span-2 font-mono legal-data" data-value="Tersedia">********</div>
+                    
+                    <div class="col-span-1 text-gray-400"><i class="fas fa-hard-hat mr-2"></i> SBU Konstruksi</div>
+                    <div class="col-span-1 md:col-span-2 font-mono legal-data" data-value="BG007 BG009, SI001 SI003">********</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="py-24 relative bg-nb-darker">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 gs-reveal">
+                <h2 class="font-heading text-4xl font-bold mb-4" data-i18n="team_title">Tim Kami</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto" data-i18n="team_sub">Profesional, berdedikasi, dan siap memberikan solusi terbaik.</p>
+                
+                <!-- CATATAN DEVELOPER UNTUK USER -->
+                <div class="mt-4 p-4 border border-yellow-500/30 bg-yellow-500/10 rounded-lg text-xs text-yellow-200 inline-block text-left max-w-2xl">
+                    <i class="fas fa-exclamation-triangle mr-2"></i>
+                    <strong>Pemberitahuan Sistem:</strong> Karena aturan ketat untuk tidak mengubah wajah asli personil, sistem telah menyiapkan tempat (placeholder) dengan rasio 9:16 presisi. <br>
+                    Untuk produksi: Ganti URL <code>src="..."</code> pada tag gambar dengan letak file foto PDF yang sebenarnya (misal: <code>/assets/img/erdi.jpg</code>).
+                </div>
+            </div>
+
+            <!-- Grid Layout (Hierarki: Direktur di atas/lebih besar) -->
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4 md:gap-8">
+                
+                <!-- Direktur (span 2 col on mobile) -->
+                <div class="col-span-2 md:col-span-2 lg:col-span-2 team-card rounded-xl overflow-hidden cursor-pointer relative shadow-lg gs-reveal">
+                    <div class="team-img-wrapper h-full">
+                        <!-- REPLACE SRC HERE WITH ACTUAL PHOTO -->
+                        <img src="https://placehold.co/800x1422/0B2E63/C7CCD1?text=Foto+Asli:\nErdi+Johan,+S.H" alt="Erdi Johan" class="team-img w-full h-full object-cover">
+                        
+                        <div class="team-info-overlay absolute inset-0 flex flex-col justify-end p-6">
+                            <h3 class="text-2xl font-bold text-white mb-1">Erdi Johan, S.H</h3>
+                            <p class="text-nb-blueBright font-medium text-sm">Direktur</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wakil Direktur -->
+                <div class="col-span-2 md:col-span-2 lg:col-span-2 team-card rounded-xl overflow-hidden cursor-pointer relative shadow-lg gs-reveal">
+                    <div class="team-img-wrapper h-full">
+                         <!-- REPLACE SRC HERE WITH ACTUAL PHOTO -->
+                        <img src="https://placehold.co/800x1422/0B2E63/C7CCD1?text=Foto+Asli:\nNeneng+Ilmiati" alt="Neneng Ilmiati" class="team-img w-full h-full object-cover">
+                        
+                        <div class="team-info-overlay absolute inset-0 flex flex-col justify-end p-6">
+                            <h3 class="text-2xl font-bold text-white mb-1">Neneng Ilmiati</h3>
+                            <p class="text-nb-blueBright font-medium text-sm">Wakil Direktur</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Staf lainnya -->
+                <div class="col-span-1 md:col-span-1 team-card rounded-xl overflow-hidden cursor-pointer relative shadow-lg gs-reveal">
+                    <div class="team-img-wrapper">
+                        <img src="https://placehold.co/400x711/1A1A1A/C7CCD1?text=Foto:\nKamal" alt="Kamal" class="team-img">
+                        <div class="team-info-overlay absolute inset-0 flex flex-col justify-end p-4">
+                            <h3 class="text-lg font-bold text-white leading-tight">Kamal</h3>
+                            <p class="text-nb-blueBright text-xs mt-1">Komanditer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-span-1 md:col-span-1 team-card rounded-xl overflow-hidden cursor-pointer relative shadow-lg gs-reveal">
+                    <div class="team-img-wrapper">
+                        <img src="https://placehold.co/400x711/1A1A1A/C7CCD1?text=Foto:\nAnnisa" alt="Annisa" class="team-img">
+                        <div class="team-info-overlay absolute inset-0 flex flex-col justify-end p-4">
+                            <h3 class="text-lg font-bold text-white leading-tight">Annisa Rizqiani</h3>
+                            <p class="text-nb-blueBright text-xs mt-1">Finance & Accounting</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-span-1 md:col-span-1 team-card rounded-xl overflow-hidden cursor-pointer relative shadow-lg gs-reveal">
+                    <div class="team-img-wrapper">
+                        <img src="https://placehold.co/400x711/1A1A1A/C7CCD1?text=Foto:\nDedi" alt="Dedi" class="team-img">
+                        <div class="team-info-overlay absolute inset-0 flex flex-col justify-end p-4">
+                            <h3 class="text-lg font-bold text-white leading-tight">Dedi Priadi</h3>
+                            <p class="text-nb-blueBright text-xs mt-1">General Affairs</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-span-1 md:col-span-1 team-card rounded-xl overflow-hidden cursor-pointer relative shadow-lg gs-reveal">
+                    <div class="team-img-wrapper">
+                        <img src="https://placehold.co/400x711/1A1A1A/C7CCD1?text=Foto:\nDendi" alt="Dendi" class="team-img">
+                        <div class="team-info-overlay absolute inset-0 flex flex-col justify-end p-4">
+                            <h3 class="text-lg font-bold text-white leading-tight">Dendi Hendriana, S.T</h3>
+                            <p class="text-nb-blueBright text-xs mt-1">Site Supervisor Eng.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-span-1 md:col-span-2 lg:col-span-2 team-card rounded-xl overflow-hidden cursor-pointer relative shadow-lg gs-reveal justify-self-center w-full md:w-1/2">
+                    <div class="team-img-wrapper">
+                        <img src="https://placehold.co/400x711/1A1A1A/C7CCD1?text=Foto:\nYana" alt="Yana" class="team-img">
+                        <div class="team-info-overlay absolute inset-0 flex flex-col justify-end p-4">
+                            <h3 class="text-lg font-bold text-white leading-tight">Yana Taryana, B.E</h3>
+                            <p class="text-nb-blueBright text-xs mt-1">Supervisor Dev. Program</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-span-1 md:col-span-2 lg:col-span-2 team-card rounded-xl overflow-hidden cursor-pointer relative shadow-lg gs-reveal justify-self-center w-full md:w-1/2">
+                    <div class="team-img-wrapper">
+                        <img src="https://placehold.co/400x711/1A1A1A/C7CCD1?text=Foto:\nYega" alt="Yega" class="team-img">
+                        <div class="team-info-overlay absolute inset-0 flex flex-col justify-end p-4">
+                            <h3 class="text-lg font-bold text-white leading-tight">Yega Syahputra</h3>
+                            <p class="text-nb-blueBright text-xs mt-1">Staff Site Engineer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="py-24 relative bg-[#070707]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="font-heading text-4xl font-bold mb-12 text-center gs-reveal" data-i18n="port_title">Pengalaman Proyek</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Jasa Konstruksi -->
+                <div class="gs-reveal">
+                    <div class="flex items-center gap-3 mb-6 border-b border-white/10 pb-4">
+                        <i class="fas fa-hard-hat text-2xl text-nb-blueBright"></i>
+                        <h3 class="text-2xl font-bold" data-i18n="port_cat_1">Jasa Konstruksi</h3>
+                    </div>
+                    
+                    <div class="space-y-6 relative border-l-2 border-nb-blue/30 pl-6 ml-3">
+                        <div class="relative">
+                            <div class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-nb-blueBright"></div>
+                            <h4 class="font-bold text-white mb-1">Gedung Kantor Setda Pangandaran</h4>
+                            <p class="text-xs text-nb-silver mb-2">Pemerintah Kab. Pangandaran | 2015</p>
+                        </div>
+                        <div class="relative">
+                            <div class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-nb-silverDark"></div>
+                            <h4 class="font-bold text-white mb-1">Peningkatan Jembatan Pamanukan-Sewo</h4>
+                            <p class="text-xs text-nb-silver mb-2">Kemenpupr Dirjen Bina Marga | 2016</p>
+                        </div>
+                        <div class="relative">
+                            <div class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-nb-silverDark"></div>
+                            <h4 class="font-bold text-white mb-1">Pagar Keliling LAPAS Narkoba Cirebon</h4>
+                            <p class="text-xs text-nb-silver mb-2">Kementerian Hukum dan HAM | 2016</p>
+                        </div>
+                        <div class="relative">
+                            <div class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-nb-silverDark"></div>
+                            <h4 class="font-bold text-white mb-1">Rehab RKB SIT Leuwi Goong Garut</h4>
+                            <p class="text-xs text-nb-silver mb-2">Yayasan SMKI Nurul Amin | 2017</p>
+                        </div>
+                        <!-- More items represented by a "..." for elegance in UI, or can list all -->
+                        <div class="text-sm text-nb-blueBright cursor-pointer hover:underline mt-4">Lihat 6 proyek lainnya...</div>
+                    </div>
+                </div>
+
+                <!-- Pengadaan Barang & Jasa -->
+                <div class="gs-reveal">
+                    <div class="flex items-center gap-3 mb-6 border-b border-white/10 pb-4">
+                        <i class="fas fa-boxes text-2xl text-nb-blueBright"></i>
+                        <h3 class="text-2xl font-bold" data-i18n="port_cat_2">Pengadaan Barang & Jasa</h3>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="glass-card p-4 rounded-lg border-l-4 border-l-nb-blueBright">
+                            <h4 class="font-bold text-sm">Meubelair Gedung Arsip BMN Balitbang KP</h4>
+                            <p class="text-xs text-gray-400 mt-1">Depok, Jawa Barat | 2015</p>
+                        </div>
+                        <div class="glass-card p-4 rounded-lg border-l-4 border-l-nb-silver">
+                            <h4 class="font-bold text-sm">Belanja Pakaian Dinas Harian (PDH) Khaki</h4>
+                            <p class="text-xs text-gray-400 mt-1">Disperindag Provinsi Jawa Barat | 2016</p>
+                        </div>
+                        <div class="glass-card p-4 rounded-lg border-l-4 border-l-nb-silver">
+                            <h4 class="font-bold text-sm">Sewa Laptop & Printer PON XIX</h4>
+                            <p class="text-xs text-gray-400 mt-1">Setda Provinsi Jawa Barat | 2016</p>
+                        </div>
+                        <div class="glass-card p-4 rounded-lg border-l-4 border-l-nb-silver">
+                            <h4 class="font-bold text-sm">Pengadaan Obat Pertanian & Peralatan</h4>
+                            <p class="text-xs text-gray-400 mt-1">PT FMC & PT Bina Guna Kimia Jakarta | 2022</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Galeri Portofolio (Masonry Placeholder) -->
+            <div class="mt-16 gs-reveal">
+                <h3 class="text-center font-bold mb-8 text-xl" data-i18n="gallery_title">Galeri Dokumentasi Lapangan</h3>
+                
+                <div class="p-4 border border-yellow-500/30 bg-yellow-500/10 rounded-lg text-xs text-yellow-200 mb-6 max-w-2xl mx-auto text-center">
+                    <i class="fas fa-info-circle mr-2"></i> Placeholder disiapkan untuk diisi gambar asli dari <code>portofolio_nb.pdf</code> (Struktur Baja, Pengecoran, Perumahan, CAD).
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[200px]">
+                    <div class="rounded-lg overflow-hidden glass-card row-span-2">
+                        <img src="https://placehold.co/400x600/1A1A1A/4FA8E8?text=Foto+Struktur+Baja\n(Tahun+2013)" alt="Proyek" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="rounded-lg overflow-hidden glass-card">
+                        <img src="https://placehold.co/400x300/1A1A1A/4FA8E8?text=Foto+Pengecoran" alt="Proyek" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="rounded-lg overflow-hidden glass-card row-span-2">
+                        <img src="https://placehold.co/400x600/1A1A1A/4FA8E8?text=Pemasangan+Perancah" alt="Proyek" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="rounded-lg overflow-hidden glass-card">
+                        <img src="https://placehold.co/400x300/1A1A1A/4FA8E8?text=Pembangunan+Rumah" alt="Proyek" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="rounded-lg overflow-hidden glass-card col-span-2">
+                        <img src="https://placehold.co/800x300/1A1A1A/4FA8E8?text=Gambar+Desain+CAD/Potongan" alt="Proyek" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center italic text-nb-silver text-sm" data-i18n="port_quote">
+                "Dari inspirasi lahir solusi, dari koneksi hadir sinergi, dari gaya semangat terbangun keberhasilan."
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 relative bg-nb-darker border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <!-- Info & Map -->
+                <div class="gs-reveal">
+                    <h2 class="font-heading text-4xl font-bold mb-6 text-nb-blueBright" data-i18n="contact_title">Hubungi Kami</h2>
+                    <p class="text-gray-400 mb-8" data-i18n="contact_sub">Mari berdiskusi tentang bagaimana kami dapat membantu mewujudkan proyek Anda.</p>
+                    
+                    <div class="space-y-6 mb-10">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-nb-blueBright shrink-0"><i class="fas fa-map-marker-alt"></i></div>
+                            <div>
+                                <h4 class="font-bold text-white">Alamat Kantor</h4>
+                                <p class="text-sm text-gray-400">Bandung City, West Java 40615, Indonesia</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-nb-blueBright shrink-0"><i class="fas fa-envelope"></i></div>
+                            <div>
+                                <h4 class="font-bold text-white">Email</h4>
+                                <p class="text-sm text-gray-400 hover:text-white transition-colors cursor-pointer">berniaganuralifa2015@gmail.com</p>
+                                <p class="text-sm text-gray-400 hover:text-white transition-colors cursor-pointer">nuralifaberniagacv@gmail.com</p>
+                                <p class="text-sm text-gray-400 hover:text-white transition-colors cursor-pointer">nb2015.bdg@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-nb-blueBright shrink-0"><i class="fas fa-phone-alt"></i></div>
+                            <div>
+                                <h4 class="font-bold text-white">Telepon / WhatsApp</h4>
+                                <p class="text-sm text-gray-400">+62 813-2160-0112</p>
+                                <p class="text-sm text-gray-400">+62 812-2039-2858</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3D Social Icons -->
+                    <div class="flex flex-wrap gap-4 mt-8">
+                        <a href="#" class="social-3d w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg flex items-center justify-center text-white text-xl border border-white/20"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-3d w-12 h-12 bg-gradient-to-br from-pink-500 to-orange-400 rounded-lg flex items-center justify-center text-white text-xl border border-white/20"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-3d w-12 h-12 bg-gradient-to-br from-red-600 to-red-800 rounded-lg flex items-center justify-center text-white text-xl border border-white/20"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-3d w-12 h-12 bg-gradient-to-br from-blue-700 to-blue-900 rounded-lg flex items-center justify-center text-white text-xl border border-white/20"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-3d w-12 h-12 bg-gradient-to-br from-gray-700 to-black rounded-lg flex items-center justify-center text-white text-xl border border-white/20"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" class="social-3d w-12 h-12 bg-gradient-to-br from-red-500 to-red-700 rounded-lg flex items-center justify-center text-white text-xl border border-white/20"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <div class="glass-card p-8 rounded-2xl gs-reveal">
+                    <form onsubmit="event.preventDefault(); alert('Formulir berhasil dikirim! (Simulasi)');" class="space-y-5">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="form_name">Nama Lengkap</label>
+                                <input type="text" required class="w-full bg-white/5 border border-white/10 rounded-md px-4 py-2.5 text-white focus:outline-none focus:border-nb-blueBright focus:ring-1 focus:ring-nb-blueBright transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="form_company">Perusahaan/Instansi</label>
+                                <input type="text" class="w-full bg-white/5 border border-white/10 rounded-md px-4 py-2.5 text-white focus:outline-none focus:border-nb-blueBright focus:ring-1 focus:ring-nb-blueBright transition-colors">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="form_email">Email</label>
+                                <input type="email" required class="w-full bg-white/5 border border-white/10 rounded-md px-4 py-2.5 text-white focus:outline-none focus:border-nb-blueBright focus:ring-1 focus:ring-nb-blueBright transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="form_phone">No. HP / WhatsApp</label>
+                                <input type="tel" required class="w-full bg-white/5 border border-white/10 rounded-md px-4 py-2.5 text-white focus:outline-none focus:border-nb-blueBright focus:ring-1 focus:ring-nb-blueBright transition-colors">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="form_subject">Jenis Kebutuhan</label>
+                            <select class="w-full bg-[#111] border border-white/10 rounded-md px-4 py-2.5 text-white focus:outline-none focus:border-nb-blueBright transition-colors appearance-none">
+                                <option>Pengadaan Barang</option>
+                                <option>Jasa Konstruksi</option>
+                                <option>Joint Operation (JO)</option>
+                                <option>Lainnya</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="form_msg">Pesan / Rencana Proyek</label>
+                            <textarea rows="4" required class="w-full bg-white/5 border border-white/10 rounded-md px-4 py-2.5 text-white focus:outline-none focus:border-nb-blueBright transition-colors"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-nb-blueLight hover:bg-nb-blue text-white font-bold py-3 px-4 rounded-md transition-colors flex items-center justify-center gap-2">
+                            <span data-i18n="btn_submit">Kirim Pesan</span> <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Maps Embed (Placeholder for actual Google Maps iframe) -->
+            <div class="mt-16 w-full h-96 rounded-xl overflow-hidden glass-card gs-reveal p-1">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126748.56347862248!2d107.57311709235512!3d-6.903444341687337!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e6398252477f%3A0x146a1f93d3e815b2!2sBandung%2C%20Bandung%20City%2C%20West%20Java!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid" width="100%" height="100%" style="border:0; border-radius: 0.5rem; filter: invert(90%) hue-rotate(180deg);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[#050505] pt-16 pb-8 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-br from-nb-blue to-nb-blueLight rounded-sm flex items-center justify-center font-bold text-xs">NB</div>
+                        <h2 class="font-heading font-bold text-xl tracking-wider text-white">NURALIFA BERNIAGA</h2>
+                    </div>
+                    <p class="text-sm text-gray-400 max-w-sm mb-6">
+                        Menginspirasi. Menghubungkan. Membangun Dengan Semangat. Mitra terpercaya untuk pengadaan dan konstruksi sejak 2015.
+                    </p>
+                    <a href="#" class="inline-flex items-center gap-2 text-sm text-nb-blueBright hover:text-white transition-colors">
+                        <i class="fas fa-file-pdf"></i> <span data-i18n="btn_dl">Download Company Profile (PDF)</span>
+                    </a>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-white mb-4">Navigasi Cepat</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#home" class="hover:text-nb-blueBright transition-colors">Beranda</a></li>
+                        <li><a href="#about" class="hover:text-nb-blueBright transition-colors">Tentang Kami</a></li>
+                        <li><a href="#services" class="hover:text-nb-blueBright transition-colors">Core Business</a></li>
+                        <li><a href="#team" class="hover:text-nb-blueBright transition-colors">Tim Perusahaan</a></li>
+                        <li><a href="#portfolio" class="hover:text-nb-blueBright transition-colors">Portofolio</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-white mb-4">Kontak</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li>Bandung City, West Java</li>
+                        <li>berniaganuralifa2015@gmail.com</li>
+                        <li>+62 813-2160-0112</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+                <p>&copy; <span id="currentYear"></span> CV NURALIFA BERNIAGA. All rights reserved.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="hover:text-white">Kebijakan Privasi</a>
+                    <a href="#" class="hover:text-white">Syarat & Ketentuan</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp CTA -->
+    <a href="https://wa.me/6281321600112?text=Halo%20Nuralifa%20Berniaga,%20saya%20ingin%20berdiskusi%20tentang%20proyek..." target="_blank" class="fixed bottom-6 right-6 w-14 h-14 bg-green-500 text-white rounded-full flex items-center justify-center text-3xl shadow-[0_0_20px_rgba(34,197,94,0.5)] hover:scale-110 hover:bg-green-400 transition-all z-50 animate-bounce">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // 1. Bilingual Dictionary (ID & EN exact mapping)
+        const dictionary = {
+            id: {
+                nav_home: "Beranda", nav_about: "Tentang", nav_services: "Layanan", nav_team: "Tim", nav_portfolio: "Portofolio", nav_contact: "Kontak",
+                hero_badge: "Pengadaan Barang & Jasa Konstruksi",
+                hero_sub: "Solusi Profesional Pengadaan Barang & Jasa Terpercaya. Menginspirasi, menghubungkan, dan membangun dengan semangat sejak 2015.",
+                btn_contact: "Hubungi Kami", btn_portfolio: "Lihat Portofolio",
+                cap_1: "Proyek bukan sekadar untuk pekerjaan", cap_2: "Bisnis bukan sekadar bertransaksi.", cap_3: "Bagi kami, ini adalah soal Inspire - Connect - Passion-Build", cap_4: "Solusi bisnis modern dengan semangat dan sinergi.",
+                about_title: "Tentang Kami",
+                about_history: "Mitra terpercaya untuk pengadaan barang dan jasa bagi instansi pemerintah, BUMN, dan perusahaan swasta. Kami mengutamakan profesionalisme, integritas, dan ketepatan waktu. NURALIFA BERNIAGA resmi didirikan pada tahun 2015 di Kota Bandung, Provinsi Jawa Barat, Indonesia, dengan semangat untuk menjadi solusi strategis dan profesional dalam pengadaan barang dan jasa, serta aktivitas konstruksi dan perdagangan umum. Sejak tahun 2015, Nuralifa Berniaga hadir sebagai entitas bisnis terpercaya dari Bandung, Provinsi Jawa Barat, yang terus berkembang menjadi partner profesional dalam pengadaan barang, jasa konstruksi, dan manajemen usaha modern. Perusahaan ini dibentuk berdasarkan kebutuhan akan entitas bisnis lokal yang fleksibel dan adaptif terhadap dinamika pasar, siap menjadi mitra terpercaya dalam skala nasional maupun internasional dan mengedepankan efisiensi, integritas, dan profesionalitas.",
+                about_vision: "Menjadi mitra bisnis terpercaya dan kompetitif di tingkat nasional dan internasional dalam bidang pengadaan, jasa konstruksi, dan manajemen usaha.",
+                m_1: "Memberikan solusi layanan profesional dan berintegritas.", m_2: "Menjalin kemitraan strategis berbasis kepercayaan dan kinerja.", m_3: "Berinovasi dalam pengelolaan aset, proyek, dan keuangan.", m_4: "Menyediakan produk dan jasa berkualitas tinggi dan tepat waktu.", m_5: "Mendorong pertumbuhan berkelanjutan bagi perusahaan dan mitra kerja.",
+                val_title: "Nilai Perusahaan (Values)",
+                v_1: "Kejujuran dan etika kerja yang tinggi.", v_2: "Keahlian dan tanggung jawab dalam pelaksanaan.", v_3: "Adaptasi teknologi dan solusi baru.", v_4: "Kemitraan jangka panjang yang saling menguntungkan.", v_5: "Fokus pada dampak positif sosial dan lingkungan.",
+                about_quote: '"Kami percaya bahwa setiap keberhasilan dimulai dari inspirasi, dibangun melalui koneksi, dan dijalankan dengan semangat."',
+                biz_title: "Bidang Usaha Utama",
+                b_1_t: "Pengadaan Barang dan Jasa Konstruksi", b_1_d: "Melayani proyek-proyek konstruksi baik swasta maupun pemerintah, dengan penekanan pada kualitas, waktu, dan efisiensi biaya.",
+                b_2_t: "Manajemen Aset dan Cash Management", b_2_d: "Solusi pengelolaan aset dan arus kas yang transparan, akuntabel, dan terintegrasi bagi klien institusi maupun korporasi.",
+                b_3_t: "Trading dan General Kontraktor", b_3_d: "Perdagangan komoditas, peralatan industri, dan pelaksanaan proyek sebagai kontraktor umum.",
+                b_4_t: "Supplier", b_4_d: "Menyediakan berbagai kebutuhan material konstruksi, alat teknik, dan perlengkapan usaha lainnya.",
+                b_5_t: "Joint Operation (JO)", b_5_d: "Bermitra dengan pelaku usaha lokal dan internasional untuk kolaborasi proyek jangka pendek maupun panjang, berbasis sinergi dan keuntungan bersama.",
+                legal_title: "Legalitas & Perizinan", legal_sub: "Dokumen resmi perusahaan.", btn_mask: "Buka Data",
+                team_title: "Tim Kami", team_sub: "Profesional, berdedikasi, dan siap memberikan solusi terbaik.",
+                port_title: "Pengalaman Proyek", port_cat_1: "Jasa Konstruksi", port_cat_2: "Pengadaan Barang & Jasa", gallery_title: "Galeri Dokumentasi Lapangan",
+                port_quote: '"Dari inspirasi lahir solusi, dari koneksi hadir sinergi, dari gaya semangat terbangun keberhasilan."',
+                contact_title: "Hubungi Kami", contact_sub: "Mari berdiskusi tentang bagaimana kami dapat membantu mewujudkan proyek Anda.",
+                form_name: "Nama Lengkap", form_company: "Perusahaan/Instansi", form_email: "Email", form_phone: "No. HP / WhatsApp", form_subject: "Jenis Kebutuhan", form_msg: "Pesan / Rencana Proyek", btn_submit: "Kirim Pesan", btn_dl: "Download Company Profile (PDF)"
+            },
+            en: {
+                nav_home: "Home", nav_about: "About", nav_services: "Services", nav_team: "Team", nav_portfolio: "Portfolio", nav_contact: "Contact",
+                hero_badge: "Procurement & Construction Services",
+                hero_sub: "Professional Solutions for Reliable Procurement & Services. Inspiring, connecting, and building with passion since 2015.",
+                btn_contact: "Contact Us", btn_portfolio: "View Portfolio",
+                cap_1: "Projects are not just a 'job'", cap_2: "Business is not just about transacting.", cap_3: "For us, it's about Inspire - Connect - Passion-Build", cap_4: "Modern business solutions with passion and synergy.",
+                about_title: "About Us",
+                about_history: "A trusted partner for procurement of goods and services for government agencies, state-owned enterprises, and private companies. We prioritize professionalism, integrity, and punctuality. NURALIFA BERNIAGA was officially established in 2015 in Bandung City, West Java Province, Indonesia, with a spirit to become a strategic and professional solution in the procurement of goods and services, as well as construction activities and general trading. Since 2015, Nuralifa Berniaga has been present as a trusted business entity from Bandung, West Java Province, which continues to grow into a professional partner in procurement, construction services, and modern business management. This company was formed based on the need for a local business entity that is flexible and adaptive to market dynamics, ready to become a trusted partner on a national and international scale and prioritizing efficiency, integrity, and professionalism.",
+                about_vision: "To become a trusted and competitive business partner at the national and international levels in the fields of procurement, construction services, and business management.",
+                m_1: "Providing professional and high-integrity service solutions.", m_2: "Establishing strategic partnerships based on trust and performance.", m_3: "Innovating in asset, project, and financial management.", m_4: "Providing high-quality products and services on time.", m_5: "Encouraging sustainable growth for the company and business partners.",
+                val_title: "Corporate Values",
+                v_1: "High honesty and work ethics.", v_2: "Expertise and responsibility in execution.", v_3: "Adaptation of technology and new solutions.", v_4: "Long-term, mutually beneficial partnerships.", v_5: "Focus on positive social and environmental impacts.",
+                about_quote: '"We believe that every success begins with inspiration, is built through connection, and is executed with passion."',
+                biz_title: "Core Business",
+                b_1_t: "Procurement of Goods & Construction Services", b_1_d: "Serving both private and government construction projects, with an emphasis on quality, time, and cost efficiency.",
+                b_2_t: "Asset & Cash Management", b_2_d: "Transparent, accountable, and integrated asset and cash flow management solutions for institutional and corporate clients.",
+                b_3_t: "Trading and General Contractor", b_3_d: "Commodity trading, industrial equipment, and project execution as a general contractor.",
+                b_4_t: "Supplier", b_4_d: "Providing various construction material needs, technical tools, and other business equipment.",
+                b_5_t: "Joint Operation (JO)", b_5_d: "Partnering with local and international business actors for short and long-term project collaboration, based on synergy and mutual benefit.",
+                legal_title: "Legality & Licensing", legal_sub: "Official company documents.", btn_mask: "Reveal Data",
+                team_title: "Our Team", team_sub: "Professional, dedicated, and ready to provide the best solutions.",
+                port_title: "Project Experience", port_cat_1: "Construction Services", port_cat_2: "Procurement of Goods & Services", gallery_title: "Field Documentation Gallery",
+                port_quote: '"From inspiration is born a solution, from connection comes synergy, from the style of passion success is built."',
+                contact_title: "Contact Us", contact_sub: "Let's discuss how we can help bring your project to life.",
+                form_name: "Full Name", form_company: "Company/Institution", form_email: "Email", form_phone: "Phone / WhatsApp", form_subject: "Type of Needs", form_msg: "Message / Project Plan", btn_submit: "Send Message", btn_dl: "Download Company Profile (PDF)"
+            }
+        };
+
+        let currentLang = 'id';
+
+        function updateLanguage(lang) {
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dictionary[lang][key]) {
+                    el.innerText = dictionary[lang][key];
+                }
+            });
+            document.getElementById('langText').innerText = lang.toUpperCase();
+            document.documentElement.lang = lang;
+        }
+
+        document.getElementById('langToggle').addEventListener('click', () => {
+            currentLang = currentLang === 'id' ? 'en' : 'id';
+            updateLanguage(currentLang);
+        });
+        document.getElementById('mobileLangToggle').addEventListener('click', () => {
+            currentLang = currentLang === 'id' ? 'en' : 'id';
+            updateLanguage(currentLang);
+            document.getElementById('mobileLangToggle').innerText = `Switch Language (${currentLang === 'id' ? 'EN' : 'ID'})`;
+        });
+
+        // 2. Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 3. Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-lg');
+                nav.style.background = 'rgba(10, 10, 10, 0.95)';
+            } else {
+                nav.classList.remove('shadow-lg');
+                nav.style.background = 'rgba(10, 10, 10, 0.8)';
+            }
+        });
+
+        // 4. Legality Data Masking
+        let isMasked = true;
+        const maskBtn = document.getElementById('toggleMaskBtn');
+        const maskText = document.getElementById('maskText');
+        const legalDataEls = document.querySelectorAll('.legal-data');
+        
+        maskBtn.addEventListener('click', () => {
+            isMasked = !isMasked;
+            if(isMasked) {
+                maskText.innerText = currentLang === 'id' ? "Buka Data" : "Reveal Data";
+                maskBtn.innerHTML = `<i class="fas fa-eye-slash mr-1"></i> <span id="maskText">${maskText.innerText}</span>`;
+                legalDataEls.forEach(el => el.innerText = "********");
+            } else {
+                maskText.innerText = currentLang === 'id' ? "Tutup Data" : "Hide Data";
+                maskBtn.innerHTML = `<i class="fas fa-eye mr-1"></i> <span id="maskText">${maskText.innerText}</span>`;
+                legalDataEls.forEach(el => el.innerText = el.getAttribute('data-value'));
+            }
+        });
+
+        // 5. GSAP Animations (ScrollTrigger)
+        gsap.registerPlugin(ScrollTrigger);
+        
+        const revealElements = document.querySelectorAll('.gs-reveal');
+        revealElements.forEach((el, index) => {
+            gsap.fromTo(el, 
+                { autoAlpha: 0, y: 50 }, 
+                { 
+                    duration: 1, 
+                    autoAlpha: 1, 
+                    y: 0, 
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: el,
+                        start: "top 85%", // reveals when top of element hits 85% of viewport
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+        });
+
+        // Set current year in footer
+        document.getElementById('currentYear').innerText = new Date().getFullYear();
+    </script>
+</body>
+</html>
